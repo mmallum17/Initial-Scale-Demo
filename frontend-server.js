@@ -13,6 +13,16 @@ io.on('connection', function (socket){
         console.log('MSG', from, ' saying ', msg);
     });
 
+    socket.on('chat message', function(msg){
+        console.log('message: ' + msg);
+        socket.broadcast.emit('chat message', msg);
+        //io.emit('chat message', msg);
+    });
+
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
+
 });
 
 http.listen(80, function () {
